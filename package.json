@@ -1,0 +1,14 @@
+{
+  "name": "segwit-examples",
+  "version": "0.0.1",
+  "author": "kento1218 (https://github.com/kento1218)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kento1218/segwit-examples.git"
+  },
+  "dependencies": {
+    "bitcoinjs-lib": "^3.3.0",
+    "yargs": "^10.0.3"
+  }
+}
