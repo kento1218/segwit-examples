@@ -11,7 +11,7 @@ $ export SEED=`node gen-seed.js` # generate and save master key seed
 
 ## Tools
 
-### Address Genaration
+### Address Generation
 Usage:
 
 ```
@@ -90,7 +90,7 @@ Address: n2w8XiE4PKCHSjR2QgTWh348PTyDZbTgnj
 ### Address Generation (P2SH(2-3 multisig))
 
 ```
-node address.js -T -i 0 -t multisig
+$ node address.js -T -i 0 -t multisig
 Path(1): m/44'/1'/1'/0/0
 Path(2): m/44'/1'/2'/0/0
 Path(3): m/44'/1'/3'/0/0
@@ -221,3 +221,36 @@ $ node transaction.js -T txinfo.json
 
 See https://live.blockcypher.com/btc-testnet/tx/09934dbad8c8cbfa79bb2b43d8dde438fc5133bc9f96d11cec6f3822472f6332/
 
+### Transaction Signing (with segwit, multisig)
+
+```
+$ cat txinfo.json
+{
+  "inputs": [
+    {
+      "tx_hash": "d72fa15959da24364859fda68460e89f6f604abb7e0cb509dbe9f8bec6bb3de9",
+      "index": 0,
+
+      "pubkey_script": "a914aaed17cf6e8a75e406726b71505471c7535a58be87",
+      "redeem_script": "00209496d165c38533c6c94e348b8ddb2400455f4263b4de12ae038834d1af021a51",
+      "witness_script": "522102989f0379adfdfbc2f67d1fba7d9b0ab4338443348a8a1f4a54e752fb4aa22398210378eaa0f5d81ac6138645cfe0c83a42adeb2aca4b739f7ddc2be73974e3ec18e4210231d4579a98c7319389a93c4b410584711e99ced8a6bfaef62a66991b90863a7953ae",
+      "amount": 4999500,
+
+      "keys": [
+        "m/49'/1'/2'/0/0",
+        "m/49'/1'/3'/0/0"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "address": "mkzJaYWJUPJiN1CyJnGPbGB8QLHuuJqEU9",
+      "amount": 4998500
+    }
+  ]
+}
+$ node transaction.js -T txinfo.json
+01000000000101e93dbbc6bef8e9db09b50c7ebb4a606f9fe86084a6fd59483624da5959a12fd700000000232200209496d165c38533c6c94e348b8ddb2400455f4263b4de12ae038834d1af021a51ffffffff0164454c00000000001976a9143c04cad9314f90a3dd66f909f291d816d5c44cd288ac0400473044022004d829d8630979545e1123fa3ae9cb9f46624032d41b5500654f21031b67283702204bd5337075ea75ae765644ffefaaccf6fcb7cfd349481f14f5dd970715bbe8450147304402205163291294fde8f6c9463a17004fb97bafc08a41974686d2c5edc7e03ddbc490022032b492cabc22e748da1a2c598e1277aa99566e3e0ba67c2a0fd39042d5ac96a50169522102989f0379adfdfbc2f67d1fba7d9b0ab4338443348a8a1f4a54e752fb4aa22398210378eaa0f5d81ac6138645cfe0c83a42adeb2aca4b739f7ddc2be73974e3ec18e4210231d4579a98c7319389a93c4b410584711e99ced8a6bfaef62a66991b90863a7953ae00000000
+```
+
+See https://live.blockcypher.com/btc-testnet/tx/61d0723a0f4f67e7357e8ac6ed3a0bf0c53d464d1b079355a455995ec25c4a4d
